@@ -1,0 +1,2 @@
+#! /bin/bash
+tmux -S /var/tmux/liveon -2 attach -t liveon
