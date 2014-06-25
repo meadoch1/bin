@@ -1,0 +1,50 @@
+#! /bin/bash
+rvm use ruby-1.9.3-p448
+tmate send-keys -t liveon 'cd ~/git/onlife' C-m
+tmate send-keys -t liveon 'e' C-m
+tmate new-window -n rspec -t liveon
+tmate new-window -n apps -t liveon
+tmate split-window -h
+tmate split-window -v
+tmate select-pane -L
+tmate split-window -v -p 66
+tmate split-window -v
+tmate new-window -n irb -t liveon
+tmate split-window -h
+tmate split-window -v
+tmate select-pane -L
+tmate split-window -v -p 66
+tmate split-window -v
+tmate new-window -n services -t liveon
+tmate split-window -h
+tmate new-window -n console -t liveon
+tmate send-keys -t liveon:5.1 'rabbitmq-server' C-m
+tmate send-keys -t liveon:5.2 'mongod' C-m
+tmate send-keys -t liveon:2 'cd ~/git/onlife/liveon' C-m
+tmate send-keys -t liveon:3.1 'cd ~/git/onlife/entity_service' C-m
+tmate send-keys -t liveon:3.1 'bundle exec rails s -p 3002' C-m
+tmate send-keys -t liveon:3.2 'cd ~/git/onlife/assessment_service' C-m
+tmate send-keys -t liveon:3.2 'bundle exec rails s -p 3003' C-m
+tmate send-keys -t liveon:3.3 'cd ~/git/onlife/platform_configuration' C-m
+tmate send-keys -t liveon:3.3 'bundle exec rails s -p 3001' C-m
+tmate send-keys -t liveon:3.4 'cd ~/git/onlife/liveon' C-m
+tmate send-keys -t liveon:3.4 'bundle exec rails s' C-m
+tmate send-keys -t liveon:3.5 'cd ~/git/onlife/onlife_health' C-m
+tmate send-keys -t liveon:3.5 'bundle exec rails s -p 9494' C-m
+tmate send-keys -t liveon:4.1 'cd ~/git/onlife/entity_service' C-m
+tmate send-keys -t liveon:4.1 'bundle exec rails c' C-m
+tmate send-keys -t liveon:4.2 'cd ~/git/onlife/assessment_service' C-m
+tmate send-keys -t liveon:4.2 'bundle exec rails c' C-m
+tmate send-keys -t liveon:4.3 'cd ~/git/onlife/platform_configuration' C-m
+tmate send-keys -t liveon:4.3 'bundle exec rails c' C-m
+tmate send-keys -t liveon:4.4 'cd ~/git/onlife/liveon' C-m
+tmate send-keys -t liveon:4.4 'bundle exec rails c' C-m
+tmate send-keys -t liveon:4.5 'cd ~/git/onlife/onlife_health' C-m
+tmate send-keys -t liveon:4.5 'bundle exec rails c' C-m
+tmate send-keys -t liveon:6 'cd ~/git' C-m
+tmate rename-window -t liveon:2 rspec
+tmate rename-window -t liveon:3 apps
+tmate rename-window -t liveon:4 irb
+tmate rename-window -t liveon:5 services
+tmate select-window -t liveon:1
+tmate attach -t liveon

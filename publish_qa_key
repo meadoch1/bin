@@ -1,0 +1,8 @@
+#!/bin/bash
+servers=( QA-MDB01 QA-RMQ01 QA-SOLR01 QA-DAEMON01 QA-PORTWEB01 QA-PORTWEB02 QA-ASSESSWEB01 QA-ASSESSWEB02 QA-WEBSERV01 QA-WEBSERV02 QA-ADMINWEB01 )
+for server in "${servers[@]}"
+do
+  scp ~/.ssh/id_olh_qa.pub $server:~/
+  ssh $server "mkdir .ssh; mv id_olh_qa.pub .ssh/authorized_keys; chmod 700 .ssh; chmod 600 .ssh/authorized_keys"
+  ssh $server
+done

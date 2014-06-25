@@ -1,0 +1,52 @@
+#! /bin/bash
+rvm use ruby-1.9.3-p448
+tmate -S /var/tmux/liveon new-session -s liveon -n editor -d
+tmate -S /var/tmux/liveon send-keys -t liveon 'cd ~/git/onlife' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon 'e' C-m
+tmate -S /var/tmux/liveon new-window -n rspec -t liveon
+tmate -S /var/tmux/liveon new-window -n apps -t liveon
+tmate -S /var/tmux/liveon split-window -h
+tmate -S /var/tmux/liveon split-window -v
+tmate -S /var/tmux/liveon select-pane -L
+tmate -S /var/tmux/liveon split-window -v -p 66
+tmate -S /var/tmux/liveon split-window -v
+tmate -S /var/tmux/liveon new-window -n irb -t liveon
+tmate -S /var/tmux/liveon split-window -h
+tmate -S /var/tmux/liveon split-window -v
+tmate -S /var/tmux/liveon select-pane -L
+tmate -S /var/tmux/liveon split-window -v -p 66
+tmate -S /var/tmux/liveon split-window -v
+tmate -S /var/tmux/liveon new-window -n services -t liveon
+tmate -S /var/tmux/liveon split-window -h
+tmate -S /var/tmux/liveon new-window -n console -t liveon
+tmate -S /var/tmux/liveon send-keys -t liveon:5.1 'rabbitmq-server' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:5.2 'mongod' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:2 'cd ~/git/onlife/liveon' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.1 'cd ~/git/onlife/entity_service' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.1 'bundle exec rails s -p 3002' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.2 'cd ~/git/onlife/assessment_service' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.2 'bundle exec rails s -p 3003' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.3 'cd ~/git/onlife/platform_configuration' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.3 'bundle exec rails s -p 3001' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.4 'cd ~/git/onlife/liveon' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.4 'bundle exec rails s' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.5 'cd ~/git/onlife/onlife_health' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:3.5 'bundle exec rails s -p 9494' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.1 'cd ~/git/onlife/entity_service' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.1 'bundle exec rails c' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.2 'cd ~/git/onlife/assessment_service' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.2 'bundle exec rails c' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.3 'cd ~/git/onlife/platform_configuration' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.3 'bundle exec rails c' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.4 'cd ~/git/onlife/liveon' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.4 'bundle exec rails c' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.5 'cd ~/git/onlife/onlife_health' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:4.5 'bundle exec rails c' C-m
+tmate -S /var/tmux/liveon send-keys -t liveon:6 'cd ~/git' C-m
+tmate -S /var/tmux/liveon rename-window -t liveon:2 rspec
+tmate -S /var/tmux/liveon rename-window -t liveon:3 apps
+tmate -S /var/tmux/liveon rename-window -t liveon:4 irb
+tmate -S /var/tmux/liveon rename-window -t liveon:5 services
+tmate -S /var/tmux/liveon select-window -t liveon:1
+chgrp tmuxers /var/tmux/liveon
+tmate -S /var/tmux/liveon -2 attach -t liveon
