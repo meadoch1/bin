@@ -1,0 +1,5 @@
+#!/bin/bash
+
+t s $1
+t resume
+hcl resume @$1

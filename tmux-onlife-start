@@ -1,0 +1,40 @@
+#! /bin/bash
+rvm use ruby-1.9.3-p448
+
+sessions="liveon entity assessment config ondemand plyushkin eligibility dl"
+directories="liveon entity_service assessment_service platform_configuration onlife_health plyushkin-service eligibility_service direct_login"
+ports="3000 3002 3003 3001 9494 3004 3005 nil"
+
+session_a=(${sessions// / })
+directory_a=(${directories// / })
+port_a=(${ports// / })
+
+length=${#session_a[@]}
+
+for ((i==0;i<=$length-1;i++)); do
+  session="${session_a[$i]}"
+  directory="${directory_a[$i]}"
+  port="${port_a[$i]}"
+
+  tmux -S /var/tmux/liveon new-session -s $session -n editor -d
+  tmux -S /var/tmux/liveon send-keys -t $session "cd ~/git/onlife/$directory/" C-m
+  tmux -S /var/tmux/liveon send-keys -t $session "v" C-m
+  tmux -S /var/tmux/liveon new-window -n rspec -t $session
+  tmux -S /var/tmux/liveon split-window -h -t $session
+  tmux -S /var/tmux/liveon new-window -n app -t $session
+  tmux -S /var/tmux/liveon split-window -h -t $session
+  tmux -S /var/tmux/liveon send-keys -t $session:2.1 "cd ~/git/onlife/$directory" C-m
+  tmux -S /var/tmux/liveon send-keys -t $session:2.2 "cd ~/git/onlife/$directory/" C-m
+  tmux -S /var/tmux/liveon send-keys -t $session:3.1 "cd ~/git/onlife/$directory" c-m
+  tmux -S /var/tmux/liveon send-keys -t $session:3.1 "bundle exec rails s -p $port" c-m
+  tmux -S /var/tmux/liveon send-keys -t $session:3.2 "cd ~/git/onlife/$directory" C-m
+  tmux -S /var/tmux/liveon send-keys -t $session:3.2 "bundle exec rails c" C-m
+  tmux -S /var/tmux/liveon rename-window -t $session:2 rspec
+  tmux -S /var/tmux/liveon rename-window -t $session:3 app
+  tmux -S /var/tmux/liveon select-window -t $session:1
+done
+
+tmux -S /var/tmux/liveon new-session -s ngrok -n console -d
+
+chgrp tmuxers /var/tmux/liveon
+tmux -S /var/tmux/liveon -2 attach -t liveon
