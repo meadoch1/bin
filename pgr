@@ -1,0 +1,5 @@
+#! /bin/bash
+
+for x in spring rails phantomjs zeus; do
+  pgrep -fl $x;
+done

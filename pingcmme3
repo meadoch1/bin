@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl https://env3-$1.integration.covermymeds.com/_ping
+printf "\n"

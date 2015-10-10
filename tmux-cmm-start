@@ -1,0 +1,42 @@
+#! /bin/bash
+ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-auth-sock"
+
+rvm use ruby-2.0.0
+
+sessions="epamotron dashboard"
+directories="epamotron dashboard"
+ports="3000"
+
+session_a=(${sessions// / })
+directory_a=(${directories// / })
+port_a=(${ports// / })
+
+length=${#session_a[@]}
+
+for ((i==0;i<=$length-1;i++)); do
+  session="${session_a[$i]}"
+  directory="${directory_a[$i]}"
+  port="${port_a[$i]}"
+
+  tmux -S /var/tmp/cmm new-session -s $session -n editor -d
+  tmux -S /var/tmp/cmm send-keys -t $session "cd ~/git/cmm/$directory/" C-m
+  tmux -S /var/tmp/cmm send-keys -t $session "v" C-m
+  tmux -S /var/tmp/cmm new-window -n rspec -t $session
+  tmux -S /var/tmp/cmm split-window -h -t $session
+  tmux -S /var/tmp/cmm new-window -n app -t $session
+  tmux -S /var/tmp/cmm split-window -h -t $session
+  tmux -S /var/tmp/cmm send-keys -t $session:2.1 "cd ~/git/cmm/$directory" C-m
+  tmux -S /var/tmp/cmm send-keys -t $session:2.2 "cd ~/git/cmm/$directory/" C-m
+  tmux -S /var/tmp/cmm send-keys -t $session:3.1 "cd ~/git/cmm/$directory" c-m
+  tmux -S /var/tmp/cmm send-keys -t $session:3.1 "bundle exec rails s -p $port" c-m
+  tmux -S /var/tmp/cmm send-keys -t $session:3.2 "cd ~/git/cmm/$directory" C-m
+  tmux -S /var/tmp/cmm send-keys -t $session:3.2 "bundle exec rails c" C-m
+  tmux -S /var/tmp/cmm rename-window -t $session:2 rspec
+  tmux -S /var/tmp/cmm rename-window -t $session:3 app
+  tmux -S /var/tmp/cmm select-window -t $session:1
+done
+
+tmux -S /var/tmp/cmm new-session -s ngrok -n console -d
+
+chgrp tmuxers /var/tmp/cmm
+tmux -S /var/tmp/cmm -2 attach -t epamotron

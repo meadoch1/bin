@@ -1,4 +1,3 @@
 #!/bin/bash
 
-#t out
 hcl stop

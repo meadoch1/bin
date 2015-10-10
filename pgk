@@ -1,0 +1,4 @@
+#! /bin/bash
+for x in spring rails phantomjs zeus; do
+  pkill -fl $x;
+done

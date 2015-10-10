@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pingcmme3 epamotron
+pingcmme3 epa
+pingcmme3 pbmproxy
+pingcmme3 central
+pingcmme3 eligibility

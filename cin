@@ -1,6 +1,4 @@
 #!/bin/bash
 
 cout
-#t s $1
-#t in $2
 hcl @$1 $2

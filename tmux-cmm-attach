@@ -1,0 +1,2 @@
+#! /bin/bash
+tmux -S /var/tmp/cmm -2 attach -t epamotron

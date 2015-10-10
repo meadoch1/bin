@@ -1,0 +1,4 @@
+#! /bin/bash
+
+gh-auth add --users=$1 --command="/usr/local/bin/tmux -S /var/tmp/cmm -2 attach -t epamotron"
+sudo cp ~/.ssh/authorized_keys /Users/tmuxguest/.ssh/
