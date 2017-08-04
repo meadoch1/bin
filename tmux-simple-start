@@ -1,7 +1,7 @@
 #! /bin/bash --login
 
   session="new"
-  directory="metanoia"
+  directory="metanoiaex"
   #port="3000"
 
   tmux -S /var/tmux/metanoia new-session -s $session -n editor -d
