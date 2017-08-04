@@ -1,0 +1,71 @@
+#!/bin/bash
+ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-auth-sock"
+
+windows="orch epa pv ex_cmm_messages rb_cmm_messages protobuf_definitions"
+directories="orch examplepluginapp pipeline_verifier ex_cmm_messages rb_cmm_messages protobuf_definitions"
+ports="3000"
+
+window_a=(${windows// / })
+directory_a=(${directories// / })
+
+length=${#window_a[@]}
+session="work"
+
+$TCMD -S /tmp/work new-session -s $session -n console -d
+$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/orch/" C-m
+$TCMD -S /tmp/work send-keys -t $session "clear" C-m
+$TCMD -S /tmp/work split-window -h -t $session
+$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/examplepluginapp/" C-m
+$TCMD -S /tmp/work send-keys -t $session "clear" C-m
+$TCMD -S /tmp/work split-window -v -t $session
+$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/pipeline_verifier/" C-m
+$TCMD -S /tmp/work send-keys -t $session "clear" C-m
+for ((i==0;i<=$length-1;i++)); do
+  window="${window_a[$i]}"
+  directory="${directory_a[$i]}"
+
+  $TCMD -S /tmp/work new-window -n $window -t $session
+  $TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/$directory/" C-m
+  $TCMD -S /tmp/work send-keys -t $session "e" C-m
+  # $TCMD -S /tmp/work new-window -t $session
+  # $TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/$directory/" C-m
+  # $TCMD -S /tmp/work send-keys -t $session "clear" C-m
+  # $TCMD -S /tmp/work split-window -h -t $session
+  # $TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/$directory/" C-m
+  # $TCMD -S /tmp/work send-keys -t $session "clear" C-m
+done
+$TCMD -S /tmp/work select-window -t $session:2
+$TCMD -S /tmp/work -2 attach -t work
+
+# $TCMD -S /tmp/work new-session -s work -n emacs -d
+
+# for name in spec bash console vagrant watch; do
+#     $TCMD -S /tmp/work new-window -n $name -t work
+#     done
+
+# for window in 1 2 3 4 5 6; do
+#     # cd to current directory to jostle rvm's fragile mind
+#         $TCMD -S /tmp/work send-keys -t work:$window 'cd .' C-m
+# 	    # clear screens of profile startup trash
+# 	        $TCMD -S /tmp/work send-keys -t work:$window 'clear' C-m
+# 		done
+
+# # get this party started
+# $TCMD -S /tmp/work send-keys -t work:1 'cd ~/git/cmm/epamotron' C-m
+# $TCMD -S /tmp/work send-keys -t work:1 'emacs' C-m
+# $TCMD -S /tmp/work send-keys -t work:2 'time bundle exec rspec' C-m
+# $TCMD -S /tmp/work send-keys -t work:4 'bundle exec rails console' C-m
+
+# $TCMD -S /tmp/work send-keys -t work:5 'cd ~/cmm/vagrant' C-m
+# $TCMD -S /tmp/work send-keys -t work:5 'vagrant ssh' C-m
+
+# $TCMD -S /tmp/work send-keys -t work:6 'cd ~/cmm/vagrant/code' C-m
+
+# # Select window 1 and attach to it
+# $TCMD -S /tmp/work select-window -t work:1
+# $TCMD -S /tmp/work -2 attach -t work
+
+# # NOTES
+
+# How to rename a window after you've created it
+# $TCMD -S /tmp/work rename-window -t work:1 newname
