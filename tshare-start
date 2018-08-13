@@ -1,8 +1,10 @@
 #!/bin/bash
 ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-auth-sock"
 
-windows="orch epa pv ex_cmm_messages rb_cmm_messages protobuf_definitions"
-directories="orch examplepluginapp pipeline_verifier ex_cmm_messages rb_cmm_messages protobuf_definitions"
+# windows="orch epa pv ex_cmm_messages rb_cmm_messages protobuf_definitions"
+# directories="orch examplepluginapp pipeline_verifier ex_cmm_messages rb_cmm_messages protobuf_definitions"
+windows="fs fb bash"
+directories="fhir-starter fhir_bridge fhir_bridge"
 ports="3000"
 
 window_a=(${windows// / })
@@ -12,14 +14,12 @@ length=${#window_a[@]}
 session="work"
 
 $TCMD -S /tmp/work new-session -s $session -n console -d
-$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/orch/" C-m
-$TCMD -S /tmp/work send-keys -t $session "clear" C-m
-$TCMD -S /tmp/work split-window -h -t $session
-$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/examplepluginapp/" C-m
-$TCMD -S /tmp/work send-keys -t $session "clear" C-m
-$TCMD -S /tmp/work split-window -v -t $session
-$TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/pipeline_verifier/" C-m
-$TCMD -S /tmp/work send-keys -t $session "clear" C-m
+$TCMD -S /tmp/work send-keys -t $session "cd ~/Dropbox/org/active.org" C-m
+$TCMD -S /tmp/work send-keys -t $session "e" C-m
+# $TCMD -S /tmp/work split-window -h -t $session
+# $TCMD -S /tmp/work send-keys -t $session "cd ~/git/cmm/fhir_bridge/" C-m
+# $TCMD -S /tmp/work send-keys -t $session "clear" C-m
+# $TCMD -S /tmp/work split-window -v -t $session
 for ((i==0;i<=$length-1;i++)); do
   window="${window_a[$i]}"
   directory="${directory_a[$i]}"
