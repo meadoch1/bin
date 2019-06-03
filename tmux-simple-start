@@ -1,27 +1,32 @@
 #! /bin/bash --login
 
   session="new"
-  directory="metanoiaex"
+  directory="cb"
   #port="3000"
 
-  tmux -S /var/tmux/metanoia new-session -s $session -n editor -d
-  tmux -S /var/tmux/metanoia send-keys -t $session "cd ~/git/$directory/" C-m
-  tmux -S /var/tmux/metanoia send-keys -t $session "v" C-m
-  tmux -S /var/tmux/metanoia new-window -n rspec -t $session
-  tmux -S /var/tmux/metanoia split-window -h -t $session
-  tmux -S /var/tmux/metanoia new-window -n app -t $session
-  tmux -S /var/tmux/metanoia split-window -h -t $session
-  tmux -S /var/tmux/metanoia send-keys -t $session:2.1 "cd ~/git/$directory" C-m
-  tmux -S /var/tmux/metanoia send-keys -t $session:2.2 "cd ~/git/$directory/" C-m
-  tmux -S /var/tmux/metanoia send-keys -t $session:3.1 "cd ~/git/$directory" c-m
-  tmux -S /var/tmux/metanoia send-keys -t $session:3.1 "bundle exec rails s -p $port" c-m
-  tmux -S /var/tmux/metanoia send-keys -t $session:3.2 "cd ~/git/$directory" C-m
-  tmux -S /var/tmux/metanoia send-keys -t $session:3.2 "bundle exec rails c" C-m
-  tmux -S /var/tmux/metanoia rename-window -t $session:2 rspec
-  tmux -S /var/tmux/metanoia rename-window -t $session:3 app
-  tmux -S /var/tmux/metanoia select-window -t $session:1
+  tmux -v -S /var/tmux/cb new-session -s $session -n editor -d
+  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/crane-aws/" C-m
+  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
+  tmux -S /var/tmux/cb new-window -n hoist -t $session
+  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/hoist/" C-m
+  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
+  tmux -S /var/tmux/cb new-window -n docker -t $session
+  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/crane-docker/" C-m
+  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
+#   tmux -S /var/tmux/cb split-window -h -t $session
+#   tmux -S /var/tmux/cb new-window -n app -t $session
+#   tmux -S /var/tmux/cb split-window -h -t $session
+#   tmux -S /var/tmux/cb send-keys -t $session:2.1 "cd ~/git/$directory" C-m
+#   tmux -S /var/tmux/cb send-keys -t $session:2.2 "cd ~/git/$directory/" C-m
+#   tmux -S /var/tmux/cb send-keys -t $session:3.1 "cd ~/git/$directory" c-m
+#   tmux -S /var/tmux/cb send-keys -t $session:3.1 "bundle exec rails s -p $port" c-m
+#   tmux -S /var/tmux/cb send-keys -t $session:3.2 "cd ~/git/$directory" C-m
+#   tmux -S /var/tmux/cb send-keys -t $session:3.2 "bundle exec rails c" C-m
+#   tmux -S /var/tmux/cb rename-window -t $session:2 rspec
+#   tmux -S /var/tmux/cb rename-window -t $session:3 app
+#   tmux -S /var/tmux/cb select-window -t $session:1
 
-tmux -S /var/tmux/metanoia new-session -s ngrok -n console -d
+# tmux -S /var/tmux/cb new-session -s ngrok -n console -d
 
-chgrp tmuxers /var/tmux/metanoia
-tmux -S /var/tmux/metanoia -2 attach -t new
+# chgrp tmuxers /var/tmux/cb
+tmux -v -S /var/tmux/cb -2 attach -t new
