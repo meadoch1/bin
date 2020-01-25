@@ -1,6 +1,8 @@
 #! /bin/bash
 
-hcl alias devi 8561360 31064
-hcl alias admini 8561360 4589507
-hcl alias pto 8561360 4589506
-hcl alias dev 4212466 31064
+hcl alias admin 22492028 2152678
+hcl alias break 22492028 12993302
+hcl alias dev 22492028 2213734
+hcl alias mtg 22492028 2213737
+hcl alias pr 22492028 12993290
+hcl alias groom 22492028 2213733
