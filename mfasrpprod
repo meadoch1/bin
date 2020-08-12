@@ -1,0 +1,3 @@
+#! /bin/bash
+~/git/cb/bp/utility-scripts/setMfaSessionToken.sh -p cb-apstudentresponseportal-prod-dev
+~/git/cb/bp/utility-scripts/setMfaSessionToken.sh -p cb-apstudentresponseportal-prod-admin

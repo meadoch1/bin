@@ -5,14 +5,18 @@
   #port="3000"
 
   tmux -v -S /var/tmux/cb new-session -s $session -n editor -d
-  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/crane-aws/" C-m
-  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
-  tmux -S /var/tmux/cb new-window -n hoist -t $session
-  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/hoist/" C-m
-  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
-  tmux -S /var/tmux/cb new-window -n docker -t $session
-  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/crane-docker/" C-m
-  tmux -S /var/tmux/cb send-keys -t $session "e" C-m
+  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/tpa/tpa" C-m
+  tmux -S /var/tmux/cb split-window -h -t $session
+  tmux -S /var/tmux/cb send-keys -t $session "v" C-m
+  tmux -S /var/tmux/cb new-window -n console -t $session
+  tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/tpa/tpa/" C-m
+  tmux -S /var/tmux/cb split-window -h -t $session
+  tmux -S /var/tmux/cb send-keys -t $session:2.1 "yarn start" C-m
+  # tmux -S /var/tmux/cb send-keys -t $session "v" C-m
+  # tmux -S /var/tmux/cb new-window -n docker -t $session
+  # tmux -v -S /var/tmux/cb send-keys -t $session "cd ~/git/cb/crane-docker/" C-m
+  # tmux -S /var/tmux/cb send-keys -t $session "v" C-m
+
 #   tmux -S /var/tmux/cb split-window -h -t $session
 #   tmux -S /var/tmux/cb new-window -n app -t $session
 #   tmux -S /var/tmux/cb split-window -h -t $session
