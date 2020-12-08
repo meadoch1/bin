@@ -1,0 +1,2 @@
+#! /bin/bash
+~/git/cb/bp/utility-scripts/setMfaSessionToken.sh -p cb-catapult-prod-dev

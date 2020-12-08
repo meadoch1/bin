@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ~/bin/mfaita
+~/bin/mfacat
 ~/bin/mfatpa
 # ~/bin/mfasrp
 # ~/bin/mfadev
